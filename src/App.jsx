@@ -28,7 +28,8 @@ function App() {
       const responseText = await response.text();
       console.log("API Response Text:", responseText); // Log raw response
 
-      const contentType = response.headers.get("content-type");
+      // Safely check headers and content type
+      const contentType = response.headers?.get("content-type"); // Optional chaining added
       if (!contentType || !contentType.includes("application/json")) {
         throw new Error("Invalid API key or unexpected response.");
       }
